@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+        <title>Juego</title>
+        
+        <style>
+            #todo {
+                background-color: aqua;
+            }
+            #juego {
+                width: 400px;
+                margin: 20px auto;
+                text-align: center;
+            }
+            #nvl {
+                font-size: 3em;
+            }
+            #pts {
+                font-size: 2em;
+            }
+            #foto {
+                margin: 10px;
+            }
+            #ayudas {
+                margin: 10px 0;
+            }
+            #input input {
+                width: 1em;
+                text-align: center;
+                border: none;
+                border-bottom: 1px solid #000;
+                margin: 0 2px;
+                text-transform: uppercase;
+                background-color: aqua;
+            }
+            #input span {
+                width: 1em;
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body id="todo">
+        <div id="juego">
+            <div id="nvl"></div>
+            <div id="pts"></div>
+            <img src="" alt="" id="foto">
+            <div id="ayudas">
+                <button id="ayudaLetra">Pedir Letra (-10pts)</button>
+                <button id="ayudaSolucion">Mostrar solucion (-30pts)</button>
+            </div>
+            <div id="input"></div> 
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+        <script>
+            const niveles = [
+                { 
+                    nivel: 1, 
+                    foto: "./imagenes/nivel1.jpg",
+                    solucion: "GADI BITTON",
+                },
+                {
+                    nivel: 2,
+                    foto: "./imagenes/nivel2.jpg",
+                    solucion: "SHLOMO MAMAN"
+                },
+                {
+                    nivel: 3,
+                    foto: "./imagenes/nivel3.jpg",
+                    solucion: "NONA MALKI"
+                },
+                {
+                    nivel: 4,
+                    foto: "./imagenes/nivel4.jpg",
+                    solucion: "OREN ASHKENAZI"
+                },
+                {
+                    nivel: 5,
+                    foto: "./imagenes/nivel5.jpg",
+                    solucion: "MIJAEL BARZILAY"
+                },
+                {
+                    nivel: 6,
+                    foto: "./imagenes/nivel6.jpg",
+                    solucion: "SAGI AZRAN"
+                },
+                {
+                    nivel: 7,
+                    foto: "./imagenes/nivel7.jpg",
+                    solucion: "DANA MONET"
+                },
+                {
+                    nivel: 8,
+                    foto: "./imagenes/nivel8.jpg",
+                    solucion: "ELAD SHTAMER"
+                },
+                {
+                    nivel: 9,
+                    foto: "./imagenes/nivel9.jpg",
+                    solucion: "TAMIR SHALEV"
+                },
+                {
+                    nivel: 10,
+                    foto: "./imagenes/nivel10.jpg",
+                    solucion: "AVI LEVY"
+                },
+                {
+                    nivel: 11,
+                    foto: "./imagenes/nivel11.jpg",
+                    solucion: "MOSHIKO HALEVY"
+                },
+                {
+                    nivel: 12,
+                    foto: "./imagenes/nivel12.jpg",
+                    solucion: "DUDU BARZILAY"
+                },
+                {
+                    nivel: 13,
+                    foto: "./imagenes/nivel13.jpg",
+                    solucion: "MEIR SHEM TOV"
+                },
+                {
+                    nivel: 14,
+                    foto: "./imagenes/nivel14.jpg",
+                    solucion: "SHMULIK GOV ARI"
+                },
+                {
+                    nivel: 15,
+                    foto: "./imagenes/nivel15.jpg",
+                    solucion: "MOSHE ESKAYO"
+                },
+                {
+                    nivel: 16,
+                    foto: "./imagenes/nivel16.jpg",
+                    solucion: "MOSHE TELEM"
+                },
+                {
+                    nivel: 17,
+                    foto: "./imagenes/nivel17.jpg",
+                    solucion: "YARON BEN SIMJON"
+                },
+                {
+                    nivel: 18,
+                    foto: "./imagenes/nivel18.jpg",
+                    solucion: "BONI PIA"
+                },
+                {
+                    nivel: 19,
+                    foto: "./imagenes/nivel19.jpg",
+                    solucion: "ISRAEL SHIKER"
+                },
+                {
+                    nivel: 20,
+                    foto: "./imagenes/nivel20.jpg",
+                    solucion: "NURIT MELAMED"
+                },
+                {
+                    nivel: 21,
+                    foto: "./imagenes/nivel21.jpg",
+                    solucion: "AVNER NAIM"
+                },
+                {
+                    nivel: 22,
+                    foto: "./imagenes/nivel22.jpg",
+                    solucion: "OFER ALFASI"
+                },
+                {
+                    nivel: 23,
+                    foto: "./imagenes/nivel23.jpg",
+                    solucion: "ELI SEGAL"
+                },
+                {
+                    nivel: 24,
+                    foto: "./imagenes/nivel24.jpg",
+                    solucion: "SEFI AVIV"
+                },
+                {
+                    nivel: 25,
+                    foto: "./imagenes/nivel25.jpg",
+                    solucion: "YANKELE LEVY"
+                },
+                {
+                    nivel: 26,
+                    foto: "./imagenes/nivel26.jpg",
+                    solucion: "ERAN BITTON"
+                },
+                {
+                    nivel: 27,
+                    foto: "./imagenes/nivel27.jpg",
+                    solucion: "ITZIK BEN DAHAN"
+                },
+                {
+                    nivel: 28,
+                    foto: "./imagenes/nivel28.jpg",
+                    solucion: "ILAI SZPIEZAK"
+                },
+                {
+                    nivel: 29,
+                    foto: "./imagenes/nivel29.jpg",
+                    solucion: "SHARON ELKASLASY"
+                },
+                {
+                    nivel: 30,
+                    foto: "./imagenes/nivel30.jpg",
+                    solucion: "ILAN SWISA"
+                },
+                {
+                    nivel: 31,
+                    foto: "./imagenes/nivel31.jpg",
+                    solucion: "ARIANE BUTEL"
+                },
+                {
+                    nivel: 32,
+                    foto: "./imagenes/nivel32.jpg",
+                    solucion: "KOBI MIJAELI"
+                },
+                {
+                    nivel: 33,
+                    foto: "./imagenes/nivel33.jpg",
+                    solucion: "MOSHE TAWILY"
+                },
+                {
+                    nivel: 34,
+                    foto: "./imagenes/nivel34.jpg",
+                    solucion: "TUVIA TISHLER"
+                },
+                {
+                    nivel: 35,
+                    foto: "./imagenes/nivel35.jpg",
+                    solucion: "NAFTALI KADOSH"
+                },
+                {
+                    nivel: 36,
+                    foto: "./imagenes/nivel36.jpg",
+                    solucion: "RAFI ZIV"
+                },
+                {
+                    nivel: 37,
+                    foto: "./imagenes/nivel37.jpg",
+                    solucion: "YARON MALIJI"
+                },
+                {
+                    nivel: 38,
+                    foto: "./imagenes/nivel38.jpg",
+                    solucion: "YUVAL TABASHI"
+                },
+                {
+                    nivel: 39,
+                    foto: "./imagenes/nivel39.jpg",
+                    solucion: "OHAD ATIA"
+                },
+                {
+                    nivel: 40,
+                    foto: "./imagenes/nivel40.jpg",
+                    solucion: "VICTOR GABAY"
+                },
+                {
+                    nivel: 41,
+                    foto: "./imagenes/nivel41.jpg",
+                    solucion: "OREN SHMUEL"
+                },
+                {
+                    nivel: 42,
+                    foto: "./imagenes/nivel42.jpg",
+                    solucion: "RAJEL WAIZMAN"
+                },
+                {
+                    nivel: 43,
+                    foto: "./imagenes/nivel43.jpg",
+                    solucion: "YANKELE ZIV"
+                },
+                {
+                    nivel: 44,
+                    foto: "./imagenes/nivel44.jpg",
+                    solucion: "YONATAN KARMON"
+                },
+                {
+                    nivel: 45,
+                    foto: "./imagenes/nivel45.jpg",
+                    solucion: "YOAV ASHRIEL"
+                },
+                                
+            ];
+
+            let nivel = 0;
+            
+            let nivelActual = niveles[nivel];
+            
+            let puntos = 100;
+            
+            const nvl = document.getElementById("nvl");
+            const pts = document.getElementById("pts");
+            const foto = document.getElementById("foto");
+            const input = document.getElementById("input");
+            const ayudaLetra = document.getElementById("ayudaLetra");
+            const ayudaSolucion = document.getElementById("ayudaSolucion");
+            
+            function isLetter(str) {
+              return str.length === 1 && str.match(/[a-z]/i);
+            }
+
+            function pasarInput(evento){
+                const children = input.children;
+                const childInput = evento.currentTarget;
+                if (isLetter(evento.key) && childInput !== children[children.length - 1]) {
+                    let hermanoSiguiente = childInput.nextElementSibling;
+                    if (hermanoSiguiente.tagName !== "INPUT"){
+                        hermanoSiguiente = hermanoSiguiente.nextElementSibling;
+                    }
+                    
+                    hermanoSiguiente.focus();
+                }
+                else if (evento.key === "Backspace" && childInput !== children[0]) {
+                    let hermanoAnterior = childInput.previousElementSibling;
+                    if(hermanoAnterior.tagName !== "INPUT") {
+                        hermanoAnterior = hermanoAnterior.previousElementSibling;
+                    }
+                    
+                    hermanoAnterior.focus();
+                }
+            }
+                        
+            function chequear(){
+                let respuesta = "";
+                for (let child of input.children){
+                    if (child.tagName === "INPUT"){
+                        respuesta += child.value;
+                    }
+                    else{
+                        respuesta += " ";
+                    }
+                }
+                if (respuesta.toLocaleUpperCase() === nivelActual.solucion){
+                    alert("Ganaste");
+                    nivel++;
+                    puntos += 30;
+                    if (nivel === niveles.length){
+                        alert("FELICITACIONES!!! Completaste el juego");
+                        alert("Obtuviste " + puntos +" puntos");
+                        alert("Reiniciar Juego");
+                        nivel= 0;
+                        puntos = 50;
+                    }
+                    crearNivel();
+                }
+            }
+            
+            
+            function crearNivel (){ 
+                nivelActual = niveles[nivel];
+                nvl.innerHTML = "Nivel " + nivelActual.nivel;
+                pts.innerHTML = "Puntos " + puntos;
+                foto.setAttribute("src", nivelActual.foto);
+                input.innerHTML = "";``
+                for (let letra of nivelActual.solucion){
+                    let elementoInput;
+                    if (letra !== " "){
+                        elementoInput = document.createElement("input");
+                        elementoInput.setAttribute("maxlength", 1);
+                        elementoInput.setAttribute("name", letra);
+                        elementoInput.addEventListener("keyup", chequear);
+                        elementoInput.addEventListener("keyup", pasarInput);
+                    }
+                    else {
+                        elementoInput = document.createElement("span");
+                        elementoInput.innerHTML = " ";
+                    }
+                    input.appendChild(elementoInput);
+                }
+                input.children[0].focus();
+            }
+            
+            
+            function mostrarLetra(){
+                let child = input.children;
+                for (let c= 0; c < child.length; c++){
+                    let letraInput = child[c].value.toLocaleUpperCase(); 
+                    if ((child[c].tagName === "INPUT") && ((letraInput === "") || (letraInput !== nivelActual.solucion[c]))){
+                        child[c].value = nivelActual.solucion[c];
+                        break;
+                    }
+                }
+            }
+            
+            ayudaLetra.addEventListener("click", ayudarLetra);
+            function ayudarLetra() {
+                if (puntos >= 10){
+                    mostrarLetra();
+                    puntos -= 10;
+                    pts.innerHTML = "Puntos " + puntos;
+                    setTimeout(chequear, 200);
+                }else{
+                    alert("No tiene suficientes puntos")
+                }
+            }
+            
+            function mostrarSolucion(){
+                let child = input.children;
+                for (let c= 0; c < child.length; c++){
+                    if (child[c].tagName === "INPUT"){
+                        child[c].value = nivelActual.solucion[c];
+                    }
+                }
+            }
+            
+            ayudaSolucion.addEventListener("click", ayudarSolucion);
+            function ayudarSolucion() {
+                if (puntos >= 30){
+                    mostrarSolucion();
+                    puntos -= 60;
+                    setTimeout(chequear, 200);
+                }else{
+                    alert("No tiene suficientes puntos")
+                }
+            }
+            
+            crearNivel();    
+                        
+            
+             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+    </body>
+</html>
